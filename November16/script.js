@@ -1,5 +1,3 @@
-
-
 // ===compares only values and===value and data type
 // var num1 = 10;
 // var num2 = '10';
