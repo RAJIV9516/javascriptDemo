@@ -1,0 +1,16 @@
+{
+    "emp":[
+        {
+           "name": "Rajiv",
+           "age": 19,
+           "city": "Bhopal",
+           "contact": 1234656
+        },
+        {
+            "name": "Suuuu",
+            "age": 19,
+            "city": "tarsi",
+            "contact": 655455
+         }
+    ]
+}
