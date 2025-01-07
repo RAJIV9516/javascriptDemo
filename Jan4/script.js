@@ -9,10 +9,67 @@ async function fet(){
     <td> ${e.age} </td>
     <td> ${e.contact} </td>
     <td> ${e.city} </td>
-    <td> <button onclick="mydelete"
+    <td> <button onclick="mydelete('${e.id}')">Delet</button> </td>
+    <td> <button onclick="edit('${e.id}')">Edit</button> </td>
     </tr>
 
     `).join("")
     table.innerHTML = finaldata
 }
 fet()
+
+
+function insert_data(){
+    let data = {
+        name: document.querySelector('#name').value,
+        age: document.querySelector('#age').value,
+        city: document.querySelector('#city').value,
+        contact: document.querySelector('#contact').value,
+
+    }
+
+    fetch("http://localhost:3000/emp",{
+        method: 'POST',
+        headers:{
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(r=>alert("Data Inserted"))
+}
+
+
+// ====================update===============
+ async function edit(id){
+    let res = await fetch(`http://localhost:3000/emp/${id}`)
+    let data = await res.json()
+    let edit_frm =`
+    <input type="text" value="${data.id}" readonly> <br>
+    <input type="text" value="${data.name}" id="name1> <br>
+    <input type="text" value="${data.age}" id="age"> <br>
+    <input type="text" value="${data.contact}" id="contact"> <br>
+    <input type="text" value="${data.city}" id="city"> <br>
+    <input type="submit">
+
+    `
+    document.querySelector('#editform').innerHTML=edit_frm
+ }
+
+ function mydata(id){
+    let updata = {
+        name: document.querySelector('#name1').value,
+        id: document.querySelector('#id1').value,
+        age: document.querySelector('#age1').value,
+        contact: document.querySelector('#contact1').value,
+        city: document.querySelector('#city1').value
+
+    }
+    fetch(`http://localhost:3000/emp/${id}`{
+        method: 'PUT',
+        header:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify(updata)
+    })
+    .then(res=>alert("updated..!!!"))
+ }
